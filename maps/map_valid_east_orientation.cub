@@ -1,0 +1,14 @@
+R 640 480
+NO ./textures/wall_north.xpm   
+SO ./textures/wall_south.xpm
+WE ./textures/wall_west.xpm
+EA ./textures/wall_east.xpm
+S ./textures/ITEM.xpm
+F 110,153,15 
+C 255,255,255
+
+1 1 1 1 1 1
+1 2 0 0 2 1
+1 0 0 0 0 1
+1 0 0 0 E 1
+1 1 1 1 1 1
