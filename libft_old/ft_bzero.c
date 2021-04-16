@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_texture_set.c                                  :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjung-mo <cjung-mo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/12 13:57:33 by cjung-mo          #+#    #+#             */
-/*   Updated: 2021/04/12 13:57:34 by cjung-mo         ###   ########.fr       */
+/*   Created: 2019/11/10 17:26:15 by cjung-mo          #+#    #+#             */
+/*   Updated: 2019/12/02 16:34:49 by cjung-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	ray_texture_set(t_game *game, t_ray *ray)
+void	ft_bzero(void *s, unsigned int n)
 {
-	if (game->map[ray->map.y][ray->map.x] == 1)
+	unsigned int i;
+
+	i = 0;
+	while (i < n)
 	{
-		if (ray->side == 0)
-		{
-			if (ray->dir.x > 0)
-				ray->out.tex_num = TEX_EAST;
-			else
-				ray->out.tex_num = TEX_WEST;
-		}
-		if (ray->side == 1)
-		{
-			if (ray->dir.y < 0)
-				ray->out.tex_num = TEX_NORTH;
-			else
-				ray->out.tex_num = TEX_SOUTH;
-		}
+		*((char *)s + i) = 0;
+		i++;
 	}
 }

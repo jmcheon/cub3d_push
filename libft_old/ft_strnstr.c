@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_texture_set.c                                  :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjung-mo <cjung-mo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/12 13:57:33 by cjung-mo          #+#    #+#             */
-/*   Updated: 2021/04/12 13:57:34 by cjung-mo         ###   ########.fr       */
+/*   Created: 2019/11/15 14:04:20 by cjung-mo          #+#    #+#             */
+/*   Updated: 2019/12/02 16:43:48 by cjung-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	ray_texture_set(t_game *game, t_ray *ray)
+char		*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	if (game->map[ray->map.y][ray->map.x] == 1)
+	size_t		i;
+	size_t		j;
+
+	i = 0;
+	if (needle[0] == 0)
+		return ((char *)haystack);
+	while (haystack[i] && i < len)
 	{
-		if (ray->side == 0)
+		j = 0;
+		while (needle[j] == haystack[i + j] && i + j < len)
 		{
-			if (ray->dir.x > 0)
-				ray->out.tex_num = TEX_EAST;
-			else
-				ray->out.tex_num = TEX_WEST;
+			if (needle[j + 1] == 0)
+				return ((char *)haystack + i);
+			j++;
 		}
-		if (ray->side == 1)
-		{
-			if (ray->dir.y < 0)
-				ray->out.tex_num = TEX_NORTH;
-			else
-				ray->out.tex_num = TEX_SOUTH;
-		}
+		i++;
 	}
+	return (NULL);
 }

@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_texture_set.c                                  :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjung-mo <cjung-mo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/12 13:57:33 by cjung-mo          #+#    #+#             */
-/*   Updated: 2021/04/12 13:57:34 by cjung-mo         ###   ########.fr       */
+/*   Created: 2019/11/27 14:40:06 by cjung-mo          #+#    #+#             */
+/*   Updated: 2019/12/09 05:16:58 by cjung-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	ray_texture_set(t_game *game, t_ray *ray)
+int		ft_lstsize(t_list *lst)
 {
-	if (game->map[ray->map.y][ray->map.x] == 1)
+	int	i;
+
+	i = 0;
+	while (lst != NULL)
 	{
-		if (ray->side == 0)
-		{
-			if (ray->dir.x > 0)
-				ray->out.tex_num = TEX_EAST;
-			else
-				ray->out.tex_num = TEX_WEST;
-		}
-		if (ray->side == 1)
-		{
-			if (ray->dir.y < 0)
-				ray->out.tex_num = TEX_NORTH;
-			else
-				ray->out.tex_num = TEX_SOUTH;
-		}
+		lst = lst->next;
+		i++;
 	}
+	return (i);
 }

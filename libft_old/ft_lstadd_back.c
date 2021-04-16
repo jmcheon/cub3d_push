@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_texture_set.c                                  :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjung-mo <cjung-mo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/12 13:57:33 by cjung-mo          #+#    #+#             */
-/*   Updated: 2021/04/12 13:57:34 by cjung-mo         ###   ########.fr       */
+/*   Created: 2019/11/27 15:37:27 by cjung-mo          #+#    #+#             */
+/*   Updated: 2019/12/09 19:30:56 by cjung-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	ray_texture_set(t_game *game, t_ray *ray)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (game->map[ray->map.y][ray->map.x] == 1)
+	t_list	*temp;
+
+	if ((*lst) == NULL)
+		(*lst) = new;
+	else if (new && (*lst) && lst)
 	{
-		if (ray->side == 0)
-		{
-			if (ray->dir.x > 0)
-				ray->out.tex_num = TEX_EAST;
-			else
-				ray->out.tex_num = TEX_WEST;
-		}
-		if (ray->side == 1)
-		{
-			if (ray->dir.y < 0)
-				ray->out.tex_num = TEX_NORTH;
-			else
-				ray->out.tex_num = TEX_SOUTH;
-		}
+		temp = (*lst);
+		while (temp->next)
+			temp = temp->next;
+		temp->next = new;
 	}
 }

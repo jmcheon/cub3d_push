@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_texture_set.c                                  :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjung-mo <cjung-mo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/12 13:57:33 by cjung-mo          #+#    #+#             */
-/*   Updated: 2021/04/12 13:57:34 by cjung-mo         ###   ########.fr       */
+/*   Created: 2019/11/11 21:08:25 by cjung-mo          #+#    #+#             */
+/*   Updated: 2019/12/12 00:50:35 by cjung-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	ray_texture_set(t_game *game, t_ray *ray)
+void		*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (game->map[ray->map.y][ray->map.x] == 1)
-	{
-		if (ray->side == 0)
-		{
-			if (ray->dir.x > 0)
-				ray->out.tex_num = TEX_EAST;
-			else
-				ray->out.tex_num = TEX_WEST;
-		}
-		if (ray->side == 1)
-		{
-			if (ray->dir.y < 0)
-				ray->out.tex_num = TEX_NORTH;
-			else
-				ray->out.tex_num = TEX_SOUTH;
-		}
-	}
+	size_t			i;
+	unsigned char	*dst2;
+	unsigned char	*src2;
+
+	i = 0;
+	dst2 = (unsigned char *)dst;
+	src2 = (unsigned char *)src;
+	if (!len || dst == src)
+		return (dst);
+	if (src2 < dst2)
+		while (++i <= len)
+			dst2[len - i] = src2[len - i];
+	else
+		while (len-- > 0)
+			*(dst2++) = *(src2++);
+	return (dst);
 }

@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_texture_set.c                                  :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjung-mo <cjung-mo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/12 13:57:33 by cjung-mo          #+#    #+#             */
-/*   Updated: 2021/04/12 13:57:34 by cjung-mo         ###   ########.fr       */
+/*   Created: 2019/11/10 17:26:15 by cjung-mo          #+#    #+#             */
+/*   Updated: 2019/12/09 04:21:25 by cjung-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-void	ray_texture_set(t_game *game, t_ray *ray)
+void				*ft_memcpy(void *dst, const void *src, size_t size)
 {
-	if (game->map[ray->map.y][ray->map.x] == 1)
+	size_t			i;
+	unsigned char	*dst2;
+	unsigned char	*src2;
+
+	i = 0;
+	dst2 = (unsigned char *)dst;
+	src2 = (unsigned char *)src;
+	if (!size || dst == src)
+		return (dst);
+	while (i < size)
 	{
-		if (ray->side == 0)
-		{
-			if (ray->dir.x > 0)
-				ray->out.tex_num = TEX_EAST;
-			else
-				ray->out.tex_num = TEX_WEST;
-		}
-		if (ray->side == 1)
-		{
-			if (ray->dir.y < 0)
-				ray->out.tex_num = TEX_NORTH;
-			else
-				ray->out.tex_num = TEX_SOUTH;
-		}
+		dst2[i] = src2[i];
+		i++;
 	}
+	return (dst);
 }
