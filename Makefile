@@ -57,19 +57,15 @@ SRCS = ./draw_rays.c \
 	   ./mini_map_backgound.c \
 	   ./main.c \
 
-INCLUDE = -I./ -Imlx/ -Ilibft/
+INCLUDE =  -I./ -Imlx/ -Ilibft/
 
 CC		= gcc
 
 FLAGE	= -g -Wall -Werror -Wextra
 LXFLAGE	= -lmlx -lXext -lX11 -lm
 
-MLX		= libmlxgl.a
-MLX_L 	= lmlx_Linux
-#MLX_B	= libmlx.dylib
+MLX = -L./mlx
 	  
-
-
 OBJS = $(SRCS:.c=.o)
 
 #%.o : %.c
@@ -78,29 +74,23 @@ OBJS = $(SRCS:.c=.o)
 all : $(NAME)
 
 #$(NAME) : $(OBJS)
-$(NAME) : $(MLX)  $(OBJS)
+$(NAME) : $(MLX) $(OBJS)
 		make bonus -C $(LIBFT)/
 		cp $(LIBFT)/$(LIBFT_LIB) $(NAME)
 #${LIBC}$(NAME)$(OBJS)
-		$(CC) $(OBJS) $(LXFLAGE) $(FLAGE) -o $(NAME)  $(INCLUDE) $(LIBFT)/$(LIBFT_LIB)
+		$(CC) $(OBJS) $(LXFLAGE) $(FLAGE) -o $(NAME) $(MLX) $(INCLUDE) $(LIBFT)/$(LIBFT_LIB)
 #ar rsc $(NAME) $(OBJS)
 #	ranlib $(NAME)
 
 $(MLX) :
 	$(MAKE) -C mlx
-	mv mlx/libmlx.a mlx/$(MLX)
-#cp	$(MLX)
-#	mv mlx/libmlx_Linux.a mlx/$(MLX_L)
-
-$(MLX_L) :
-	$(MAKE) -C mlx
-	mv mlx/libmlx_Linux.a mlx/$(MLX_L)
 
 bonus : all
 
 clean :
 	/bin/rm -f $(OBJS)
 	make clean -C $(LIBFT)
+	make clean -C mlx
 
 fclean : clean
 	/bin/rm -f $(NAME)
@@ -111,4 +101,5 @@ re : fclean all
 norm :
 	norminette *.[ch]
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus norminette
+
