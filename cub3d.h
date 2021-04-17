@@ -47,9 +47,6 @@
 # define EXPORT_FILE "cub3d.bmp"
 # define WINDOW_NAME "cub3d"
 
-# define MAX_RESOLUTION_WIDTH 1920
-# define MAX_RESOLUTION_HEIGHT 1080
-
 # define TILE_SIZE 16 
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64

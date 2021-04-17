@@ -69,21 +69,17 @@ MLX = -L./mlx
 OBJS = $(SRCS:.c=.o)
 
 #%.o : %.c
-#$(CC)  -c $< -o $@ $(FLAGE)  $(INCLUDE)
+#	$(CC)  -c $< -o $@ $(FLAGE) $(LXFLAGE) $(MLX) $(INCLUDE)
 
 all : $(NAME)
 
-#$(NAME) : $(OBJS)
 $(NAME) : $(MLX) $(OBJS)
 		make bonus -C $(LIBFT)/
-		cp $(LIBFT)/$(LIBFT_LIB) $(NAME)
-#${LIBC}$(NAME)$(OBJS)
-		$(CC) $(OBJS) $(LXFLAGE) $(FLAGE) -o $(NAME) $(MLX) $(INCLUDE) $(LIBFT)/$(LIBFT_LIB)
-#ar rsc $(NAME) $(OBJS)
-#	ranlib $(NAME)
+		cp $(LIBFT)/$(LIBFT_LIB) $(LIBFT_LIB)
+		$(CC) $(OBJS) $(LXFLAGE) $(FLAGE) -o $(NAME) $(MLX) $(INCLUDE) $(LIBFT_LIB) 
 
 $(MLX) :
-	$(MAKE) -C mlx
+	make -C mlx
 
 bonus : all
 
@@ -101,5 +97,4 @@ re : fclean all
 norm :
 	norminette *.[ch]
 
-.PHONY : all clean fclean re bonus norminette
-
+.PHONY : all clean fclean re bonus norm

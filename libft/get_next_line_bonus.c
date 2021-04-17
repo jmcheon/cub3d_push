@@ -66,7 +66,7 @@ static char	*ft_strmod(char *str, int i)
 
 int	get_next_line(int fd, char **line)
 {
-	static char	*str[_SC_OPEN_MAX];
+	static char	*str[1024];
 	char		buf[BUFFER_SIZE + 1];
 	int			i;
 	int			ret;

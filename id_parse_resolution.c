@@ -12,12 +12,18 @@
 
 #include "cub3d.h"
 
-static void	i_resolution_max_check(int *w, int *h)
+static void	i_resolution_max_check(t_game *game, int *w, int *h)
 {
-	if (*w > MAX_RESOLUTION_WIDTH)
-		*w = MAX_RESOLUTION_WIDTH;
-	if (*h > MAX_RESOLUTION_HEIGHT)
-		*h = MAX_RESOLUTION_HEIGHT;
+	int		w_max;
+	int		h_max;
+
+	w_max = 0;
+	h_max = 0;
+	mlx_get_screen_size(game->mlx, &w_max, &h_max);
+	if (*w > w_max)
+		*w = w_max;
+	if (*h > h_max)
+		*h = h_max;
 }
 
 char	*id_parse_resolution(t_game *game, char **str)
@@ -40,7 +46,7 @@ char	*id_parse_resolution(t_game *game, char **str)
 	h = ft_atoi(str[2]);
 	if (w == 0 || h == 0)
 		return (ft_strjoin("resolution zero error: ", str[0]));
-	i_resolution_max_check(&w, &h);
+	i_resolution_max_check(game, &w, &h);
 	game->img.width = w;
 	game->img.height = h;
 	game->map_config.cnt++;
