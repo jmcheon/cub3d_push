@@ -62,14 +62,12 @@ INCLUDE =  -I./ -Imlx/ -Ilibft/
 CC		= gcc
 
 FLAGE	= -g -Wall -Werror -Wextra
+
 LXFLAGE	= -lmlx -lXext -lX11 -lm
 
 MLX = -L./mlx
 	  
 OBJS = $(SRCS:.c=.o)
-
-#%.o : %.c
-#	$(CC)  -c $< -o $@ $(FLAGE) $(LXFLAGE) $(MLX) $(INCLUDE)
 
 all : $(NAME)
 
