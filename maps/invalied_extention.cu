@@ -4,7 +4,7 @@ SO ./textures/wall_south.xpm
 WE ./textures/wall_west.xpm
 EA ./textures/wall_east.xpm
 
-S ./textures/redbrick.xpm
+S ./textures/ITEM.xpm
 F 224,172,105
 C 205,249,255
 
