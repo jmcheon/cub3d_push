@@ -87,7 +87,7 @@ clean :
 	make clean -C mlx
 
 fclean : clean
-	/bin/rm -f $(NAME)
+	/bin/rm -f $(NAME) $(LIBFT_LIB)
 	make fclean -C $(LIBFT)
 
 re : fclean all
